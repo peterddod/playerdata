@@ -28,7 +28,7 @@ For each of these, use a couple of players to showcase different examples of pla
 - [x] Boundary filtering function
 - [x] Implement in ipynb
 
-- [ ] Leaderboards
+- [x] Leaderboards
 - [ ] Heatmap
 - [ ] Zonal heatmap
 - [ ] On/Off-Ball position chart
