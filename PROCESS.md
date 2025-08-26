@@ -21,12 +21,12 @@ For each of these, use a couple of players to showcase different examples of pla
 
 # Tasks to complete
 
-- [ ] Create a test function to determine level of noise in dataset
-- [ ] Outlier removal function
-- [ ] Butterworth filter function
-- [ ] Savgol filter function
-- [ ] Boundary filtering function
-- [ ] Implement in ipynb
+- [x] Create a test function to determine level of noise in dataset
+- [x] Outlier removal function
+- [x] Butterworth filter function
+- [x] Savgol filter function
+- [x] Boundary filtering function
+- [x] Implement in ipynb
 
 - [ ] Leaderboards
 - [ ] Heatmap
