@@ -116,7 +116,7 @@ def create_player_heatmap(df, player_id, pitch_x_min=-52.5, pitch_x_max=52.5,
                           pitch_y_min=-34, pitch_y_max=34,
                           grid_cols=25, grid_rows=20,
                           style='discrete', sigma=1.0,
-                          cmap='YlOrRd', show_grid=True):
+                          cmap='YlOrRd', show_grid=True, title=None):
     """
     Generate a heatmap showing time spent in each zone of the pitch.
     
@@ -246,8 +246,9 @@ def create_player_heatmap(df, player_id, pitch_x_min=-52.5, pitch_x_max=52.5,
     ax.set_ylabel('Pitch Y (m)', fontsize=12)
     
     total_time = np.sum(time_grid)
-    title = f'{player_id} - Position Heatmap ({style.capitalize()} Style)\n'
-    title += f'Grid: {grid_cols}x{grid_rows} | Total Time: {total_time:.1f}s'
+    if title is None:
+        title = f'{player_id} - Position Heatmap ({style.capitalize()} Style)\n'
+        title += f'Grid: {grid_cols}x{grid_rows} | Total Time: {total_time:.1f}s'
     ax.set_title(title, fontsize=14, fontweight='bold')
     
     # Set axis limits
@@ -326,11 +327,11 @@ def visualise_speed_outliers(speed_original, speed_cleaned, time_original,
             if seg_id <= 0:
                 continue
             seg_mask = (segments_cleaned == seg_id)
-            ax.plot(time_cleaned[seg_mask], speed_cleaned[seg_mask], 'g-', linewidth=1.2,
+            ax.plot(time_cleaned[seg_mask], speed_cleaned[seg_mask], 'y-', linewidth=1.2,
                     label=f'Cleaned Data ({len(time_cleaned)} points)' if first else None)
             first = False
     else:
-        ax.plot(time_cleaned, speed_cleaned, 'g-', linewidth=1.2,
+        ax.plot(time_cleaned, speed_cleaned, 'y-', linewidth=1.2,
                 label=f'Cleaned Data ({len(time_cleaned)} points)')
     
     # Formatting
