@@ -20,7 +20,6 @@ Use cleaned data to generate leaderboards for:
 For each of these, use a couple of players to showcase different examples of player characteristics they show.
 
 # Tasks to complete
-
 - [x] Create a test function to determine level of noise in dataset
 - [x] Outlier removal function
 - [x] Butterworth filter function
@@ -29,6 +28,6 @@ For each of these, use a couple of players to showcase different examples of pla
 - [x] Implement in ipynb
 
 - [x] Leaderboards
-- [ ] Heatmap
-- [ ] Zonal heatmap
-- [ ] On/Off-Ball position chart
+- [x] Heatmap
+- [x] Zonal heatmap
+- [x] On/Off-Ball position chart

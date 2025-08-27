@@ -36,11 +36,27 @@ def physical_limits_outlier_removal(speed, time, max_speed=12, max_accel=8, max_
     
     return speed_cleaned, outliers
 
-def filter_to_pitch_boundaries(df, pitch_x_min, pitch_x_max, pitch_y_min, pitch_y_max):
+def filter_to_pitch_boundaries_with_segments(df, pitch_x_min, pitch_x_max, 
+                                              pitch_y_min, pitch_y_max):
     """
-    Filter the dataframe to only include data within the pitch boundaries.
+    Filter dataframe to pitch boundaries and add segment tracking for each player.
     """
-    return df[(df['Pitch_x'] >= pitch_x_min) & (df['Pitch_x'] <= pitch_x_max) & (df['Pitch_y'] >= pitch_y_min) & (df['Pitch_y'] <= pitch_y_max)]
+    # Identify valid points
+    valid = (df['Pitch_x'] >= pitch_x_min) & (df['Pitch_x'] <= pitch_x_max) & \
+            (df['Pitch_y'] >= pitch_y_min) & (df['Pitch_y'] <= pitch_y_max)
+
+    # Vectorized segment assignment per player:
+    # - Detect first valid sample after any invalid run within each player
+    # - Cumulatively count these entries to form segment IDs
+    group_key = df['participation_id']
+    entered_segment = valid & ~valid.groupby(group_key).shift(fill_value=False)
+    segment_ids = entered_segment.groupby(group_key).cumsum()
+
+    # Filter to only valid points and assign segment ids on the copy
+    df_filtered = df.loc[valid].copy()
+    df_filtered['segment'] = segment_ids.loc[valid].astype(int)
+
+    return df_filtered
 
 def interpolate_to_uniform(time, speed, pitch_x, pitch_y, target_sample_rate=10):
     """
