@@ -1,11 +1,11 @@
-## Player Tracking Data — Setup and Usage
+## Player Data Task
 
-This repository contains a small toolkit for cleaning, filtering, analyzing, and visualizing player tracking data, along with an example notebook.
+This repository contains the solution to the takehome task for the Player Data R&D role.
 
 - Code lives in `lib/`
-- Example analysis in `analysis.ipynb`
-- Put your input files in `data/`
-- Generated figures can be saved to `figures/`
+- Analysis in `analysis.ipynb`
+- Raw file in `data/`
+- Generated figures saved to `figures/`
 
 ### Prerequisites
 - Python 3.10 or newer
